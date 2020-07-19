@@ -1,8 +1,8 @@
 {
-  "SECRET_KEY" : ",#a_$hdsrdg=9fb^w79mr8kiem2%2!o5ss=t^)mvbvd+v!hs9nn",
-  "NAME": "sprinklerdata",
-  "USER": "mysql",
-  "PASSWORD": "maharaja",
+  "SECRET_KEY" : "add here",
+  "NAME": "add here",
+  "USER": "add here",
+  "PASSWORD": "add here",
   "HOST": "db1",
   "PORT": "3306"
 }

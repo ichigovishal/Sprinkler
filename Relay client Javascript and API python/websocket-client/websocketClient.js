@@ -3,9 +3,9 @@ import Websockets from './sprinkler_websocker.js';
 
 MySQL.connection_detail = {
       host: "db1",
-      user: "mysql",
-      password: "maharaja",
-      database: 'sprinklerdata',
+      user: "add here",
+      password: "add here",
+      database: 'add here',
       port: '3306',
 }
 try{
