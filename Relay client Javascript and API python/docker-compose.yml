@@ -1,0 +1,45 @@
+version: '3'
+    
+services:
+  db1:
+    image: mysql/mysql-server
+    environment:
+      - MYSQL_USER=mysql
+      - MYSQL_HOST=%    
+      - MYSQL_DATABASE=sprinklerdata
+      - MYSQL_CONTAINER_NAME=db1
+      - MYSQL_ROOT_PASSWORD=maharaja
+      - MYSQL_PASSWORD=maharaja
+      - default-authentication-plugin=mysql_native_password
+    volumes:
+      - /var/saved_data_from_sprinkler:/var/lib/mysql
+    networks: 
+      - back-end
+  api:
+    image: ichigovishal/project:apiserver
+    command: python /var/sprinklerserver/request/manage.py makemigrations
+    command: python /var/sprinklerserver/request/manage.py migrate
+    command:  python /var/sprinklerserver/request/manage.py initadmin
+    environment:
+      - DEBUG=1
+    command: python /var/sprinklerserver/request/manage.py runserver 0.0.0.0:8000
+    ports:
+      - "81:8000"
+    depends_on:
+      - db1
+    networks: 
+      - back-end
+      - front-end
+  client:
+    image: ichigovishal/project:websocketclient
+    command: node /var/Webclient/websocketClient.js
+    depends_on: 
+      - db1
+    networks: 
+      - back-end
+      - front-end
+
+
+networks: 
+      front-end:
+      back-end:
